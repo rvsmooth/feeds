@@ -76,7 +76,7 @@ jobs:
           mkdir -p docs
           if [ -n "$STATICRYPT_PASSWORD" ]; then
             npm install -g staticrypt
-            staticrypt pre-docs/index.html -p "$STATICRYPT_PASSWORD" -d docs
+            staticrypt pre-docs/index.html -p "$STATICRYPT_PASSWORD" -d docs --short
           else
             cp pre-docs/index.html docs/index.html
           fi
