@@ -1,5 +1,7 @@
 # Intro
 
+<img width="718" height="807" alt="image" src="https://github.com/user-attachments/assets/c79be5d9-1df7-40f3-bb78-a164d50e2009" />
+
 This repo produces a daily digest about the Go Programming language. It uses [Matcha](https://github.com/piqoni/matcha) rss generator and Github Pages to host it.  
 
 This is here mainly to be used as a template so you can use it for your own feeds. It also supports password protected pages via [staticrypt](https://github.com/robinmoisson/staticrypt)
