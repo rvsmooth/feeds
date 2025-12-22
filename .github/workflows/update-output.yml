@@ -46,6 +46,8 @@ jobs:
               -out matcha.db \
               -pass pass:"${{ secrets.MATCHA_DB_KEY }}" || exit 1
           fi
+          pwd
+          ls -la
 
       - name: Run Matcha with Custom Config
         run: |
@@ -67,6 +69,8 @@ jobs:
             -out matcha.db.enc \
             -pass pass:"${{ secrets.MATCHA_DB_KEY }}" || exit 1
           rm -f matcha.db
+          pwd
+          ls -la
 
       - name: Process Site (Encrypt or Copy)
         shell: bash
