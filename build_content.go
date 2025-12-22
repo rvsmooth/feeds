@@ -5,11 +5,14 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"text/template"
 
 	"github.com/gomarkdown/markdown"
 )
+
+const maxDays = 30
 
 func main() {
 	if err := run(); err != nil {
@@ -22,6 +25,11 @@ func run() error {
 	files, err := filepath.Glob("pre-docs/*.md")
 	if err != nil {
 		return err
+	}
+
+	sort.Strings(files)
+	if len(files) > maxDays {
+		files = files[len(files)-maxDays:]
 	}
 
 	digests := make(map[string]string, len(files))
