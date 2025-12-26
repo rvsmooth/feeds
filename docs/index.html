@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Digest</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar - Desktop Default */
+    #sidebar {
+      width: 260px;
+      border-right: 1px solid #ddd;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #fafafa;
+      transition: transform 0.3s ease;
+      z-index: 100;
+    }
+
+    #content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    /* Toggle Button - Hidden on Desktop */
+    #mobile-toggle {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #333;
+      color: white;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 101;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Date list styling */
+    .date { cursor: pointer; padding: 0.5rem; border-radius: 4px; }
+    .date:hover { background: #eee; }
+    .date.active { background: #ddd; font-weight: 600; }
+
+    /* MOBILE STYLES */
+    @media (max-width: 768px) {
+      #sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%); /* Hide off-screen */
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+      }
+
+      /* When sidebar has 'open' class, slide it in */
+      #sidebar.open {
+        transform: translateX(0);
+      }
+
+      #mobile-toggle {
+        display: flex; /* Show button on mobile */
+      }
+
+      #content {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="mobile-toggle" onclick="toggleSidebar()" aria-label="Toggle Sidebar">📅</button>
+  <div id="sidebar">
+    <h3>Daily Digests</h3>
+    <div id="dates"></div>
+  </div>
+  <div id="content">
+    <h3>Article Title</h3>
+    <p>Select a date from the sidebar to read the digest.</p>
+  </div>
+  
+  <script type="application/json" id="digest-data">
+    {
+      "2025-12-26": "\u003ch3\u003e\u003cimg src=\"https://www.google.com/s2/favicons?sz=32\u0026domain=www.youtube.com\" width=\"32\" height=\"32\" /\u003e AnimeUproar\u003c/h3\u003e\n\n\u003cp\u003e\u003ca href=\"https://www.youtube.com/watch?v=vV2y77kjEzw\"\u003eSHANKS VS IMU IS INSANE!! One Piece Chapter 1169 Imu Vs Shanks\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=TUsi5S_5S8c\"\u003eShanks is NOT Who We Thought!!! The DARKEST One Piece Chapter 1168\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=t7eEnXdID4s\"\u003eSHANKS TRICKED EVERYONE!! Shanks\u0026rsquo; Full Backstory Revealed in One Piece Chapter 1167\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=B5Lxh4B4LzY\"\u003eGARP AND DRAGON\u0026rsquo;S SECRET REVENGE!! Dragon vs Garp in One Piece Chapter 1166\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=RGBVUKB4KYw\"\u003eROGER \u0026amp; GARP JUST WENT CRAZY!! The Insane Ending of God Valley Flashback in One Piece Ch. 1165\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=ET0RRX-BA-E\"\u003eONE PIECE JUST BROKE OUR HEARTS!! The Dark Fate of Rocks D. Xebec vs Garp and Roger in OP Ch. 1164\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=ZLlr8yUG8_Q\"\u003eSO MESSED UP!! The Tragic Fate of Rocks D. Xebec in One Piece Chapter 1163 Revealed!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=krOvcEmNFGo\"\u003eROCKS D. XEBEC JUST BROKE THE WORLD GOVERNMENT!! One Piece Chapter 1162\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=stol_4NL72E\"\u003eDragon just SHOCKED EVERYONE at God Valley!! The TRUE HERO of God Valley! One Piece 1161\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=kyy7ySAklTw\"\u003eNO ONE SAW THIS COMING!! The God Valley Incident FINALLY REVEALED! One Piece 1160\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=zCKsA-S9E7M\"\u003eODA JUST SHOCKED EVERYONE!! THE ULTIMATE TWIST in One Piece Chapter 1159\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=XcesHuS-CW8\"\u003eODA HAS DONE IT AGAIN!! Rocks vs Harald Twist \u0026amp; Shanks\u0026rsquo; MOM Revealed! One Piece 1158\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=FhCSiqN4q1U\"\u003eROCKS SHOCKED THE WHOLE WORLD!! One Piece Chapter 1157\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=0qSBn0kCFCo\"\u003eONE PIECE IS INSANE RIGHT NOW!! Rocks D. Xebec TOO STRONG for Roger and Garp! One Piece 1156\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=oBS3LdzAI4M\"\u003eRocks D. Xebec just BROKE THE INTERNET! His Secret Bounty \u0026amp; Powers in One Piece Chapter 1155\u003c/a\u003e\u003c/p\u003e\n\n\u003ch3\u003e\u003cimg src=\"https://www.google.com/s2/favicons?sz=32\u0026domain=www.youtube.com\" width=\"32\" height=\"32\" /\u003e Brodie Robertson\u003c/h3\u003e\n\n\u003cp\u003e\u003ca href=\"https://www.youtube.com/watch?v=Db_Nl8vHs9A\"\u003eMozilla Firefox\u0026rsquo;s Future Is Going To Be Interesting\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=WTatQTpRWPs\"\u003eThe Truth Of The First Linux Kernel CVE In Rust\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=2-obijeo_bU\"\u003eRIP Perfectly Fine Nvidia GPUs On Arch Linux\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=Y_9BrE3JzWY\"\u003eLet Me Rant About Computers For 16 Minutes\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=8PTlYeLBKvI\"\u003eFOSS Is Always One Maintainer From Collapsing\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=AY5kRPexQz4\"\u003eIs This A Serious Attempt At A Linux Phone?\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=3kZJrQNE3Lw\"\u003eKDE And GNOME Finally Have A Real Competitor\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=5AePMwjV3E4\"\u003eThe Craziest Linux User Found My Email Address\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=kwXn_GSd8cA\"\u003eThe Rust Linux Kernel Experiment Is Finally Over!!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=IB_0rR0imno\"\u003eI Was Right Again About My Linux Home Directory\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=LbK_xreMSio\"\u003eThis Is The Kind Project I Love Linux For!!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=OEPcLRH-Eiw\"\u003eValve, We NEED A 64 Bit Steam Client On Linux!!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=PmjBZDGJzDQ\"\u003eThe Scientifically Correct Arch Linux User\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=N_X7clyPE5Q\"\u003eYou Control The Future Of Xorg On Linux!!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=HAhmUhLVuAc\"\u003eCloudflare Has A Serious Stability Problem\u003c/a\u003e\u003c/p\u003e\n\n\u003ch3\u003e\u003cimg src=\"https://www.google.com/s2/favicons?sz=32\u0026domain=www.youtube.com\" width=\"32\" height=\"32\" /\u003e DistroTube\u003c/h3\u003e\n\n\u003cp\u003e\u003ca href=\"https://www.youtube.com/watch?v=dspEVA8eoUg\"\u003eA \u0026ldquo;Fresh\u0026rdquo; New Terminal Text Editor (Better Than Nano!)\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=cQ3auCVzfrA\"\u003eLinux and Open Source Software In 2025\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=s5ujjhWrGQI\"\u003eXonsh Is A Modern Shell Powered By Python (Windows, Mac \u0026amp; Linux)\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=f5_JlqPkmWc\"\u003eOpen Source Apps So Good, I\u0026rsquo;d Pay For Them!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=B6Dbvs-q1zw\"\u003eSetting Up Virt-Manager On Linux\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=cTmvp0tnUmY\"\u003eTwo Simple Bash Scripts (\u0026lsquo;append\u0026rsquo; and \u0026lsquo;prepend\u0026rsquo;)\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=lzSvFAGV3ms\"\u003eTweaking The Look Of The Qtile Panel\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=sbGetz7R_nY\"\u003e\u0026lsquo;tac\u0026rsquo; - concatenate and print in reverse - Video Man Pages\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=HKuP4UjG9_U\"\u003e\u0026lsquo;cat\u0026rsquo; - concatenate and print files - Video Man Pages\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=SJiT4Xz3StI\"\u003eChat With Patrons (Nov 30, 2025)\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=hQsQJ7uhDGA\"\u003eI use CachyOS, btw!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=2g-ceq7Jwc0\"\u003eCavalier Is An Audio Visualizer For Linux\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=JMIQwysKk1c\"\u003e\u0026lsquo;touch\u0026rsquo; - change file timestamps - Video Man Pages\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=vH-iCfqfLU8\"\u003eHey, DT! It\u0026rsquo;s Nice To See You Screw Things Up\u0026hellip;\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=0jqPu31ZvOc\"\u003eSend Files Over Local Network With LocalSend\u003c/a\u003e\u003c/p\u003e\n\n\u003ch3\u003e\u003cimg src=\"https://www.google.com/s2/favicons?sz=32\u0026domain=www.youtube.com\" width=\"32\" height=\"32\" /\u003e Robert Greene\u003c/h3\u003e\n\n\u003cp\u003e\u003ca href=\"https://www.youtube.com/shorts/c4F2nz9ZPIw\"\u003eAppeal to People’s Self-Interest I Robert Greene\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/shorts/Q72CFL52FeE\"\u003eHow to Learn from Bad Experiences I Robert Greene\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=mSVxssB9rzA\"\u003eThe Power of Telling Yourself “I Don’t Know”\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/shorts/jFIh8PUV39A\"\u003eHow to Stop Falling For the Wrong Types I Robert Greene\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/shorts/tY1MutPOaGY\"\u003eThe Harsh Reality of “Crush Your Enemy Totally” I Robert Greene\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=iE1PXUrItmA\"\u003eMy Battles with Depression\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=gfH5OoQ7Bsc\"\u003eHow I See the Rightward Drift Among the Young\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/shorts/fAKyql5fWEM\"\u003eBe Willing to Get Your Hands Dirty I Robert Greene\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=O7Fiq7VhsDk\"\u003eThe Sublime Experience of Death\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=-PUU7zkQALE\"\u003eHow to Avoid the Pitfalls of Your Ego\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/shorts/3US5i1exczU\"\u003eHow to Seduce Your Readers I Robert Greene\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/shorts/HnAXLn1Ef_M\"\u003e50 Cent on Never Outshine the Master I Robert Greene\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=0fhWZWo7GcU\"\u003eThe Importance of Boredom\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=IDiw3cAIrMI\"\u003eHow to Handle Your Emotions\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/shorts/s3Dk9jUID6Y\"\u003eSee Your Flaws Clearly In Order to Work on Them I Robert Greene\u003c/a\u003e\u003c/p\u003e\n\n\u003ch3\u003e\u003cimg src=\"https://www.google.com/s2/favicons?sz=32\u0026domain=www.youtube.com\" width=\"32\" height=\"32\" /\u003e The Linux Cast\u003c/h3\u003e\n\n\u003cp\u003e\u003ca href=\"https://www.youtube.com/watch?v=086AhxaOCxU\"\u003e2025 TUXIE Awards\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=2SazG6KdVBM\"\u003eMore Qtile Work and More Chat\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=tZH-uPnkofk\"\u003eLet\u0026rsquo;s Fix Some Qtile Stuff and Chat!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=NFQcLdJrJFY\"\u003eAsk Us Anything - The Linux Cast\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=3nBroVlNgxc\"\u003eBest Things to Self Host - LUG\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/shorts/tJ3XSPp-6WI\"\u003eWho Should Use Linux?\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=0hfTxZw1pLc\"\u003eThis is NOT The Year of the Linux Desktop\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=quXdLiTJJWw\"\u003eThe Everything for Everybody Episode\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=MfY2vUpP9FI\"\u003eWhy I Won\u0026rsquo;t Be Using Omarchy\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=XXr-AGP7arQ\"\u003eLet\u0026rsquo;s Chat and Mess Around With NixOS and Hyprland!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=I54z-iy070A\"\u003eEmacs Rules, Vim Drools? - Why I\u0026rsquo;m an Emacs Guy Now\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=AJWdedIJHOM\"\u003eHow to Be A Linux Nerd\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=1rMuChpmE94\"\u003eWill a Logo Save Firefox?\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=ryEYfCoLfT8\"\u003eIs RUST The Future or The Devil? - LUG\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=EnCU2v5D0DU\"\u003eShould Linux Look Like Windows?\u003c/a\u003e\u003c/p\u003e\n\n\u003ch3\u003e\u003cimg src=\"https://www.google.com/s2/favicons?sz=32\u0026domain=www.youtube.com\" width=\"32\" height=\"32\" /\u003e The Linux Experiment\u003c/h3\u003e\n\n\u003cp\u003e\u003ca href=\"https://www.youtube.com/watch?v=3s83kULBiJ0\"\u003eelementary OS 8.1 is amazing, but still not for everyone\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=dIxcwRdS5n8\"\u003eFirefox turns into AI browser, more Wayland work - Linux Weekly News\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=6gusWDr1Qw0\"\u003eNew Linux smartphone \u0026amp; Other Linux News\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=ob-Y77kuVwM\"\u003eCosmic a great Linux desktop, but still limited\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=iKzJAgDopVI\"\u003eIs Linux at 11%? Valve\u0026rsquo;s Android translation layer - Linux Weekly News\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=TjnC0gi9Quk\"\u003eKDE drops X11 too, New Office Suite, Arduino turns to crap - Linux Weekly News\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=WnIGwjdHmbs\"\u003eThese things will make the Linux Desktop much bigger in 2026!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=-dmNW3tmi08\"\u003eNvidia finally focuses on Linux, EU caves to Big Tech - Linux Weekly News\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=bB9z2HEldNw\"\u003eHybrid GPU fixed on Linux? Android sideloading is back, Valve\u0026rsquo;s Linux push - Linux Weekly News\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=l0fvlH-KI08\"\u003eNew Steam Machine (console), Frame (VR Headset) and Controller announced !\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=Cl-reI_Uzdg\"\u003ePlease stop asking for One Single Linux Desktop or Distro\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=FJGHove2WhA\"\u003eDebian adds Rust dependency, Ubuntu\u0026rsquo;s desktop plans: Linux Weekly News\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=cgLHvULNjyo\"\u003e16 cool new (and old) GNOME extensions \u0026amp; applications!\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=aLSog92nyAU\"\u003ePython refuses $1.5M grant, Unity\u0026rsquo;s in trouble, AUR attacked again - Linux Weekly News\u003c/a\u003e\u003cbr\u003e\n\u003ca href=\"https://www.youtube.com/watch?v=Lxa86z9vtw4\"\u003eFull Linux apps on Android, Plasma 6.5, Zorin OS does big numbers - Linux Weekly News\u003c/a\u003e\u003c/p\u003e\n"
+    }
+  </script>
+  
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
+      const btn = document.getElementById('mobile-toggle');
+      btn.innerText = sidebar.classList.contains('open') ? '✕' : '📅';
+    }
+
+    // Load digest data
+    const DIGESTS = JSON.parse(document.getElementById('digest-data').textContent);
+    
+    const datesEl = document.getElementById("dates");
+    const contentEl = document.getElementById("content");
+    const dates = Object.keys(DIGESTS).sort().reverse();
+
+    function selectDate(date, element, isInitial = false) {
+      document.querySelectorAll(".date").forEach(d => d.classList.remove("active"));
+      element.classList.add("active");
+      contentEl.innerHTML = DIGESTS[date];
+      contentEl.scrollTop = 0;
+      if (!isInitial && typeof toggleSidebar === "function" && window.innerWidth <= 768) {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar.classList.contains('open')) {
+          toggleSidebar();
+        }
+      }
+    }
+
+    dates.forEach((date, index) => {
+      const div = document.createElement("div");
+      div.textContent = date;
+      div.className = "date";
+      div.onclick = () => selectDate(date, div);
+      datesEl.appendChild(div);
+      if (index === 0) {
+        selectDate(date, div, true);
+      }
+    });
+
+
+  // Close sidebar when clicking outside
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('mobile-toggle');
+
+    // If sidebar is not open, do nothing
+    if (!sidebar.classList.contains('open')) return;
+
+    // If the click happened inside the sidebar, do nothing (allow interaction)
+    if (sidebar.contains(event.target)) return;
+
+    // If the click happened on the toggle button, do nothing (let the button handle it)
+    if (toggleBtn.contains(event.target)) return;
+
+    // Otherwise (click was outside), close the sidebar
+    toggleSidebar();
+  });
+  </script>
+</body>
+</html>
